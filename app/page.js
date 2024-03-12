@@ -1,8 +1,20 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 export default function Home() {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
+  
   return (
+
     <div className="relative h-screen bg-gradient-to-br from-sky-100 via-white to-sky-100 pl-2 pr-2 text-gray-800">
       <header className="relative m-auto h-[56px] max-w-4xl pt-3">
         <div className="absolute left-0 right-0 top-3 z-20 flex items-center justify-between">
@@ -18,20 +30,38 @@ export default function Home() {
               Smart Expense Tracker
             </span>
           </Link>
-          <div>
-            <Link
-              href="#"
+          <div className='sm:flex hidden'>
+        {session?.user ? (
+          <div className='flex gap-3 md:gap-5'>
+            
+            
+            <button type='button' onClick={signOut} className='inline-flex mx-1 h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-primary/90'>
+              Sign Out
+            </button>
+
+            {/* <Link href='/profile'>
+              <Image
+                src={session?.user.image}
+                width={37}
+                height={37}
+                className='rounded-full'
+                alt='profile'
+              />
+            </Link> */}
+          </div>
+        ) : (
+          <>
+             <Link
+              href="/signin"
               className="inline-flex mx-1 h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-primary/90"
             >
               Sign in
             </Link>
-            <Link
-              href="#"
-              className="inline-flex mx-1 h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-primary/90"
-            >
-              Sign Up
-            </Link>
-          </div>
+          </>
+        )}
+      </div>
+
+         
         </div>
       </header>
       <main>

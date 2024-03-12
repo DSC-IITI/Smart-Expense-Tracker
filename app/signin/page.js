@@ -1,7 +1,19 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-
+import Router from 'next/router'
+import { redirect } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 export default function SignIn() {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
   return (
     <main
       className={`relative m-auto flex h-[100vh] w-full flex-col items-center justify-center bg-gradient-to-br from-sky-100 via-white to-sky-50 pl-2 pr-2`}
@@ -25,9 +37,43 @@ export default function SignIn() {
         <p className="mb-6 mt-3 text-center text-sm font-medium text-zinc-600">
           Use your google sign in to securely sign in.
         </p>
-        <button className="bg-gray-900 text-white rounded-md hover:bg-gray-500 p-2">
-          Sign In
-        </button>
+        
+        
+        {session?.user ? (
+         
+         <Link href="/">
+    <div className="flex justify-center items-center">
+      <button
+        type="button"
+        className="bg-gray-900 text-white rounded-md hover:bg-gray-500 p-2"
+      >
+        Go to Home
+      </button>
+    </div>
+  </Link>
+
+           
+
+            
+         
+        ) : (
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type='button'
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
+                  className='bg-gray-900 text-white rounded-md hover:bg-gray-500 p-2'
+                >
+                  Sign in
+                </button>
+              ))}
+          </>
+        )}
+      {/* </div> */}
         <p className="text-center text-sm font-medium text-gray-700">
           Don{"'"}t have an account?{" "}
           <Link

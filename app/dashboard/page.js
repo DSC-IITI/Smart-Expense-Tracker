@@ -1,3 +1,5 @@
+import ExpenseComp from "@/components/expenseComp";
+import IncomeComp from "@/components/incomeComp";
 import React from "react";
 
 const page = () => {
@@ -53,12 +55,8 @@ const page = () => {
           </div>
         </div>
         <div className="flex flex-wrap flex-col">
-          <button className="m-2 p-4 bg-green-900 text-white rounded-md hover:bg-gray-700">
-            Add new income
-          </button>
-          <button className="m-2 p-4 bg-red-900 text-white rounded-md hover:bg-gray-700">
-            Add new expense
-          </button>
+          <IncomeComp/>
+          <ExpenseComp/>
         </div>
       </div>
     </div>

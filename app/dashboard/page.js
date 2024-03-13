@@ -1,5 +1,9 @@
-import ExpenseComp from "@/components/expenseComp";
-import IncomeComp from "@/components/incomeComp";
+
+import ExpenseComp from "../components/expenseComp";
+import IncomeComp from "../components/incomeComp";
+
+
+
 import React from "react";
 
 const page = () => {

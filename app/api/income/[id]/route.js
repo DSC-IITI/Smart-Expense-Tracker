@@ -8,7 +8,7 @@ export const GET = async (request, { params }) => {
         const income = await Income.findById(params.id).populate("creator")
         if (!income) return new Response("Income Not Found", { status: 404 });
 
-        return new Response(JSON.stringify(funds), { status: 200 })
+        return new Response(JSON.stringify(income), { status: 200 })
 
     } catch (error) {
         return new Response

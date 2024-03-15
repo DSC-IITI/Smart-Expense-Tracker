@@ -1,12 +1,41 @@
-
-import ExpenseComp from "../components/expenseComp";
-import IncomeComp from "../components/incomeComp";
-
-
+"use client"
+import { DonutChart } from '@tremor/react';
 
 import React from "react";
 
 const page = () => {
+
+  const datahero = [
+    {
+      name: 'Noche Holding AG',
+      value: 9800,
+    },
+    {
+      name: 'Rain Drop AG',
+      value: 4567,
+    },
+    {
+      name: 'Push Rail AG',
+      value: 3908,
+    },
+    {
+      name: 'Flow Steal AG',
+      value: 2400,
+    },
+    {
+      name: 'Tiny Loop Inc.',
+      value: 2174,
+    },
+    {
+      name: 'Anton Resorts Holding',
+      value: 1398,
+    },
+  ];
+
+  
+
+
+
   return (
     <div className="relative h-screen bg-gradient-to-br from-sky-100 via-white to-sky-100 pl-2 pr-2 text-gray-800">
       <div className="h-5"></div>
@@ -59,10 +88,42 @@ const page = () => {
           </div>
         </div>
         <div className="flex flex-wrap flex-col">
-          <IncomeComp/>
-          <ExpenseComp/>
+
+
+
         </div>
       </div>
+
+
+      <div className="mx-auto space-y-12">
+      <div className="space-y-3">
+        <span className="text-center block font-mono text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+          donut variant 1
+        </span>
+        <div className="flex justify-center">
+          <DonutChart
+            data={datahero}
+            variant="donut"
+            // valueFormatter={dataFormatter}
+            onValueChange={(v) => console.log(v)}
+          />
+        </div>
+      </div>
+      <div className="space-y-3">
+        <span className="text-center block font-mono text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+          pie variant
+        </span>
+        <div className="flex justify-center">
+          <DonutChart
+            data={datahero}
+            variant="pie"
+            // valueFormatter={dataFormatter}
+            onValueChange={(v) => console.log(v)}
+          />
+        </div>
+      </div>
+    </div>
+
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import Income from "@/models/income";
-import { connectToDB } from "@/utils/database";
+import Income from "../../../../models/income";
+import { connectToDB } from "../../../../utils/database";
 
 export const POST = async (request) => {
     const { name,amount, date,   userId} = await request.json();

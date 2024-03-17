@@ -1,5 +1,5 @@
-import Income from "@/models/income";
-import { connectToDB } from "@/utils/database";
+import Income from "../../../../models/income";
+import { connectToDB } from "../../../../utils/database";
 
 export const GET = async (request, { params }) => {
     try {

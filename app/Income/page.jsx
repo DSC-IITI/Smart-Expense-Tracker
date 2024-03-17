@@ -8,7 +8,7 @@ import { Dialog } from '@headlessui/react'
 import { Transition,Fragment } from "@headlessui/react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import Navbar from "../components/navbar";
 const page = () => {
     const router = useRouter();
     const { data: session } = useSession();
@@ -30,10 +30,11 @@ const page = () => {
     const [allPosts, setAllPosts] = useState([]);
     const fetchPosts = async () => {
         const response = await fetch("/api/income");
+        console.log('yo');
         const fundsdata = await response.json();   
-        const filteredPosts = fundsdata.filter((item) => item.creator._id ===session?.user.id);
-        
-        setAllPosts(filteredPosts);
+        // const filteredPosts = fundsdata.filter((item) => item.creator._id ===session?.user.id);
+        console.log('ri');
+        setAllPosts(fundsdata);
       };
     
     useEffect(() => {
@@ -113,10 +114,12 @@ const page = () => {
         }
       };
   return (
-    <>
+    <div className="bg-gradient-to-br from-sky-100 via-white to-sky-100">
 
  
-      <div>
+      <div >
+      <Navbar/>
+
        <div className="flex items-center ">
         <button
           type="button"
@@ -198,7 +201,7 @@ const page = () => {
               Date
             </th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-              Email
+           Amount
             </th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">
               State
@@ -220,7 +223,8 @@ const page = () => {
                   fill="currentColor"
                   class="h-3 w-3"
                 >
-                  <path
+
+<path
                     fill-rule="evenodd"
                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                     clip-rule="evenodd"
@@ -240,7 +244,8 @@ const page = () => {
         </tbody>
       </table>
     </div>
-    </>
+
+    </div>
   )
 }
 

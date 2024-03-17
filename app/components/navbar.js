@@ -15,7 +15,7 @@ export default function Navbar() {
   
   return (
 
-    <div className="relative h-20 bg-gradient-to-br from-sky-100 via-white to-sky-100 pl-2 pr-2 text-gray-800">
+    <div className="relative h-20  pl-2 pr-2 text-gray-800">
       <header className="relative m-auto h-[56px] max-w-4xl pt-3">
         <div className="absolute left-0 right-0 top-3 z-20 flex items-center justify-between">
           <Link href={"/"} className="flex w-auto items-center p-3 text-2xl">

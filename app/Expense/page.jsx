@@ -8,7 +8,7 @@ import { Dialog } from '@headlessui/react'
 import { Transition,Fragment } from "@headlessui/react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import Navbar from "../components/navbar";
 const page = () => {
   const router = useRouter();
   const { data: session } = useSession();
@@ -111,10 +111,11 @@ const page = () => {
     }
   };
   return (
-    <>
+    <div className="bg-gradient-to-br from-sky-100 via-white to-sky-100">
 
  
       <div>
+        <Navbar/>
        <div className="flex items-center ">
         <button
           type="button"
@@ -157,14 +158,14 @@ const page = () => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg  my-7 py-10 font-medium leading-6 text-gray-900"
+                    className="text-lg  my-4 py-10 font-medium leading-6 text-gray-900"
                   >
                     Add New Expense
                   </Dialog.Title>
                   <div className="my-2">
                     <textarea onChange={(e) => setName(e.target.value)} placeholder="Name of Expense" className="text-sm font-medium leading-6 text-gray-600"></textarea>
                   </div>
-                  <div className="my-2">
+                  <div className="my-5">
                     <input onChange={(e) => setAmount(e.target.value)}  placeholder="Expense (eq. 100)" className="text-sm font-medium leading-6 text-gray-600 border-black"></input>
                   </div>
                   
@@ -203,10 +204,10 @@ const page = () => {
               Date
             </th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-              Email
+              Amount
             </th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-              State
+              Category
             </th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
           </tr>
@@ -245,7 +246,7 @@ const page = () => {
         </tbody>
       </table>
     </div>
-    </>
+    </div>
   );
 };
 

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { Flex, Heading } from "@chakra-ui/layout";
 
-import { RiSearch2Line } from "react-icons/ri";
 import { IoAdd } from "react-icons/io5";
 
 import { Button } from "@chakra-ui/button";

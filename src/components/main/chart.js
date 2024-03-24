@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from "react";
+import React, { useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 
 const renderActiveShape = (props) => {

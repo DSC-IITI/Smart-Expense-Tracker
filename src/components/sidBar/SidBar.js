@@ -22,6 +22,32 @@ const SidBar = () => {
         <Heading
           fontSize="2xl"
           color="gray.700"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "none",
+            xl: "block",
+          }}
+        >
+          Smart
+        </Heading>
+        <Heading
+          fontSize="2xl"
+          color="gray.700"
+          display={{
+            base: "none",
+            sm: "none",
+            md: "none",
+            lg: "none",
+            xl: "block",
+          }}
+        >
+          Expense
+        </Heading>
+        <Heading
+          fontSize="2xl"
+          color="gray.700"
           mb="10"
           display={{
             base: "none",
@@ -31,7 +57,7 @@ const SidBar = () => {
             xl: "block",
           }}
         >
-          Smart Expense Tracker
+          Tracker
         </Heading>
 
         <Flex

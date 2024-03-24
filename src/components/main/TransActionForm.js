@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Button } from "@chakra-ui/button";
+import { Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import {
   Modal,
@@ -21,6 +22,7 @@ import {
 const TransActionForm = ({ isOpen, onClose, addTransAction }) => {
   const [value, setValue] = useState("expense");
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     type: "expense",
     desc: "",
@@ -36,6 +38,7 @@ const TransActionForm = ({ isOpen, onClose, addTransAction }) => {
   };
 
   const fetchCategory = async () => {
+    setLoading(true);
     try {
       console.log("Fetching Started");
       const response = await axios.post(
@@ -53,6 +56,8 @@ const TransActionForm = ({ isOpen, onClose, addTransAction }) => {
       }
     } catch (error) {
       console.error("Error fetching category:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,14 +104,27 @@ const TransActionForm = ({ isOpen, onClose, addTransAction }) => {
               >
                 Guess Category
               </Button>
-              <Input
-                placeholder="Category"
-                type="text"
-                name="category"
-                onChange={handleCategory}
-                value={category}
-                mt="3"
-              />
+              <div style={{ position: "relative" }}>
+                <Input
+                  placeholder="Category"
+                  type="text"
+                  name="category"
+                  onChange={handleCategory}
+                  value={category}
+                  mt="3"
+                  disabled={loading}
+                />
+                {loading && (
+                  <Spinner
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      top: "40%",
+                      transform: "translateY(-50%)",
+                    }}
+                  />
+                )}
+              </div>
             </FormControl>
             <RadioGroup mt="6" mb="2" value={value} onChange={setValue}>
               <Radio
